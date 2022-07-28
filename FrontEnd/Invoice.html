@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- META ============================================= -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta name="robots" content="" />
+
+
+
+
+
+	<!-- MOBILE SPECIFIC ============================================= -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.min.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+	<!-- All PLUGINS CSS ============================================= -->
+	<link rel="stylesheet" type="text/css" href="assets/css/assets.css">
+
+	<!-- TYPOGRAPHY ============================================= -->
+	<link rel="stylesheet" type="text/css" href="assets/css/typography.css">
+
+	<!-- SHORTCODES ============================================= -->
+	<link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
+
+	<!-- STYLESHEETS ============================================= -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
+	<style>
+		#map {
+			height: 100%;
+		}
+
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+
+</head>
+
+<body id="bg">
+	<div class="page-wraper">
+		<div id="loading-icon-bx"></div>
+
+		<div class="account-form">
+			
+			</div>
+
+			<div class="account-form-inner">
+				
+				<div >
+					<div class="heading-bx left">
+
+
+					</div>
+
+					<form class="contact-bx" style="margin: 5%;">
+
+						<div class="row placeani">
+							<div class="col-lg-4">
+								<label>Store</label>
+								<select type="text" id="StoreSelectbox" onchange="FetchItemsData()">
+								</select>
+
+							</div>
+							
+							<div class="col-lg-4">
+								<label>Item</label>
+								<select type="text" id="ItemSelectbox" onchange="SetItemPrice()">
+								</select>
+
+							</div>
+							<div class="col-lg-4">
+								<label>Unit</label>
+								<select type="text" id="UnitSelectbox">
+								</select>
+
+							</div>
+							<div class="col-lg-2" style="margin-top: 1%;">
+								<div class="form-group">
+									<div class="input-group">
+										<label>Quantity</label>
+										<input name="dzEmail" type="number" class="form-control" required=""
+											   id="QuantityTextbox">
+									</div>
+								</div>
+							</div><div class="col-lg-2" style="margin-top: 1%;">
+								<div class="form-group">
+									<div class="input-group">
+										<label></label>
+										<input name="dzEmail" disabled type="number" class="form-control" required=""
+											   id="PriceTextbox">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4" style="margin-top: 1%;">
+								<div class="form-group">
+									<div class="input-group">
+										<label>Due Date</label>
+										<input name="dzEmail" type="date" class="form-control" required=""
+											   id="DueDateDatepicker">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-4" style="margin-top: 1%;">
+								<label>Customer</label>
+								<select type="text" id="CustomerSelectbox">
+								</select>
+
+							</div>
+					
+							<div class="col-lg-3" style="margin-top: 3%;">
+								<div class="form-group">
+									<div class="input-group">
+										<label>Pharm Disc.</label>
+										<input name="dzEmail" value="0" type="number" class="form-control" required=""
+											   id="PharmDiscTextbox">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3" style="margin-top: 3%;">
+								<div class="form-group">
+									<div class="input-group">
+										<label>Dist Disc.</label>
+										<input name="dzEmail" value="0" type="number" class="form-control" required=""
+											   id="DistDiscTextbox">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3" style="margin-top: 3%;">
+								<div class="form-group">
+									<div class="input-group">
+										<label>Cash Disc.</label>
+										<input name="dzEmail" value="0" type="number" class="form-control" required=""
+											   id="CashDiscTextbox">
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-lg-3" style="margin-top: 3%;">
+								<div class="form-group">
+									<div class="input-group">
+										<label>Vat</label>
+										<input name="dzEmail" value="14" type="number" class="form-control" required=""
+											   id="VatTextbox">
+									</div>
+								</div>
+							</div>
+							<br>
+							<br>
+						
+
+							<div class="col-lg-12 m-b30" style="margin-top: 20px;">
+								<input value="Add" type="button" class="btn button-md" onclick="AddNewItem()" />
+							</div>
+						</div>
+					</form>
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Unit</th>
+										<th>Quantity</th>
+										<th>Price</th>
+										<th>Pharm Disc</th>
+										<th>Dist Disc</th>
+										<th>Cash Disc</th>
+										<th>Value</th>
+										<th>Vat</th>
+										<th>Tax Value</th>
+										<th>Total Invoice</th>
+									</tr>
+								</thead>
+								
+								<tbody id="ItemsContainer">
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<form class="contact-bx" style="margin: 5%;">
+
+						
+					
+						<div class="col-lg-3" style="margin-top: 3%;">
+							<label id="NetBeforeLabel">Net Before Disc : </label>
+						</div>	<div class="col-lg-3" style="margin-top: 3%;">
+							<label id="NetAfterLabel">Net After Disc : </label>
+						</div>	<div class="col-lg-3" style="margin-top: 3%;">
+							<label id="TaxLabel">Tax : </label>
+						</div>	<div class="col-lg-3" style="margin-top: 3%;">
+							<label id="TotalInvoiceLabel">Net Invoice : </label>
+						</div>
+							
+							<br>
+							<br>
+						
+
+							<div class="col-lg-12 m-b30" style="margin-top: 20px;">
+								<input value="Save" type="button" class="btn button-md" onclick="Save()" />
+							</div>
+						</div>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script src="assets/js/Repos/ResRepos/InvoiceRepo.js"></script>
+
+	<!-- External JavaScripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+	
+	<script src="assets/vendors/bootstrap/js/popper.min.js"></script>
+	<script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="assets/vendors/magnific-popup/magnific-popup.js"></script>
+	<script src="assets/vendors/counter/waypoints-min.js"></script>
+	<script src="assets/vendors/counter/counterup.min.js"></script>
+	<script src="assets/vendors/imagesloaded/imagesloaded.js"></script>
+	<script src="assets/vendors/masonry/masonry.js"></script>
+	<script src="assets/vendors/masonry/filter.js"></script>
+	<script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
+	<script src="assets/js/functions.js"></script>
+	<script src="assets/js/contact.js"></script>
+	<!-- <script src='assets/vendors/switcher/switcher.js'></script> -->
+</body>
+
+</html>
